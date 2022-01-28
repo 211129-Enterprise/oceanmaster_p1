@@ -11,7 +11,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 public class ConnectionConfig {
-	private static Logger logger = Logger.getLogger(ConnectionConfig.class);
+	//private static Logger logger = Logger.getLogger(ConnectionConfig.class);
 private static Connection conn = null;
 	
 	private ConnectionConfig() {
@@ -21,11 +21,11 @@ public static Connection getConnection() {
 		
 		try {
 			if (conn != null && !conn.isClosed()) {
-				logger.info("returned re-used connection object");
+				//logger.info("returned re-used connection object");
 				return conn;
 			}
 		} catch (SQLException e) {
-			logger.error("we failed to re-use a connection");
+			//logger.error("we failed to re-use a connection");
 			e.printStackTrace();
 			return null;
 		}
@@ -46,16 +46,16 @@ public static Connection getConnection() {
 			password = prop.getProperty("password");
 			System.out.println(password);
 			conn = DriverManager.getConnection(url, username, password);
-			logger.info("Database Connection Established");
+			//logger.info("Database Connection Established");
 			
 		} catch (SQLException e) {
-			logger.error("SQL Exception thrown - Cannot establish DB connection");
+			//logger.error("SQL Exception thrown - Cannot establish DB connection");
 
 		} catch (FileNotFoundException e) {
-			logger.error("Cannot locate application.properties file");
+			//logger.error("Cannot locate application.properties file");
 			e.printStackTrace();
 		} catch (IOException e) {
-			logger.error("Something wrong with app.props file");
+			//logger.error("Something wrong with app.props file");
 			e.printStackTrace();
 		}
 		
